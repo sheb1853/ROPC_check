@@ -9,7 +9,6 @@ This PowerShell script tests Microsoft public client applications to determine w
 ## Prerequisites
 
 - PowerShell 5.1+ (Windows) or PowerShell Core (Linux/macOS)
-- Internet access
 - Azure AD credentials (username/password)
 - Azure AD Tenant ID or domain name
 
