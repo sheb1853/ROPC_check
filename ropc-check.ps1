@@ -11,8 +11,6 @@ $scope = "openid profile offline_access User.Read.All"
 
 # Define list of clients to test
 $clients = @(
-# Define list of clients to test
-$clients = @(
     @{ Name = "Office 365 Management"; ClientId = "00b41c95-dab0-4487-9791-b9d2c32c80f2" },
     @{ Name = "Microsoft Azure CLI"; ClientId = "04b07795-8ddb-461a-bbee-02f9e1bf7b46" },
     @{ Name = "Office UWP PWA"; ClientId = "0ec893e0-5785-4de6-99da-4ed124e5296c" },
@@ -47,7 +45,6 @@ $clients = @(
     @{ Name = "OneDrive"; ClientId = "b26aadf8-566f-4478-926f-589f601d9c74" },
     @{ Name = "AADJ CSP"; ClientId = "b90d5b8f-5503-4153-b545-b31cecfaece2" },
     @{ Name = "Microsoft Power BI"; ClientId = "c0d2a505-13b8-4ae0-aa9e-cddd5eab0b12" }
-
 )
 
 $success = @()
@@ -79,6 +76,7 @@ foreach ($client in $clients) {
             AccessToken  = $tokenResponse.access_token
             RefreshToken = $tokenResponse.refresh_token
         }
+
         $success += $clientResult
         Write-Host "  => Success!" -ForegroundColor Green
     }
@@ -89,7 +87,7 @@ foreach ($client in $clients) {
     Write-Host ""
 }
 
-# Now show token info for successful clients
+# Output successful tokens
 foreach ($s in $success) {
     Write-Host "`n===================================="
     Write-Host "$($s.Name) [$($s.ClientId)]"
