@@ -1,4 +1,4 @@
-# ROPC Client Tester
+# ROPC Client Tester (No Graph Connect)
 
 param()
 
@@ -11,6 +11,10 @@ $scope = "openid profile offline_access User.Read.All"
 
 # Define list of clients to test
 $clients = @(
+@{ Name = "Microsoft Graph PowerShell"; ClientId = "f8cdef31-a31e-4b4a-93e4-5f571e91255a" },
+    @{ Name = "Office"; ClientId = "d3590ed6-52b3-4102-aeff-aad2292ab01c" },
+    @{ Name = "MS Teams Web"; ClientId = "5a7b1900-6d59-4e30-8f48-c93b28ccaa55" },
+    @{ Name = "Intune Portal"; ClientId = "0a01cab5-d5bf-42cc-a5fa-5e33f07dfc4d" },
     @{ Name = "Office 365 Management"; ClientId = "00b41c95-dab0-4487-9791-b9d2c32c80f2" },
     @{ Name = "Microsoft Azure CLI"; ClientId = "04b07795-8ddb-461a-bbee-02f9e1bf7b46" },
     @{ Name = "Office UWP PWA"; ClientId = "0ec893e0-5785-4de6-99da-4ed124e5296c" },
@@ -76,7 +80,6 @@ foreach ($client in $clients) {
             AccessToken  = $tokenResponse.access_token
             RefreshToken = $tokenResponse.refresh_token
         }
-
         $success += $clientResult
         Write-Host "  => Success!" -ForegroundColor Green
     }
@@ -87,7 +90,7 @@ foreach ($client in $clients) {
     Write-Host ""
 }
 
-# Output successful tokens
+# Now show token info for successful clients
 foreach ($s in $success) {
     Write-Host "`n===================================="
     Write-Host "$($s.Name) [$($s.ClientId)]"
@@ -100,5 +103,3 @@ foreach ($s in $success) {
     }
     Write-Host "===================================="
 }
-
-Write-Host "`n===== Test Complete =====" -ForegroundColor Cyan
